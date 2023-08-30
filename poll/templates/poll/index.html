@@ -1,0 +1,77 @@
+{% extends 'poll/base.html' %}
+{% load static %}
+{%block body%}  
+
+<div class="m-4">
+        <h1 class="text-center text-3xl lg:text-4xl font-bold mt-8 lg:text-center sm:text-center">
+            A.I. Trust Bar
+        </h1>
+        <h4 class="text-center font sans m-2">I wouldn't leave you behind... Dr. Brand. - Tars</h4>
+        <br>
+       
+         <form method="post" action="{% url 'update_poll' 2 %}">
+             {% csrf_token %} 
+             {% if user.is_authenticated %}
+             <p class="text-center font-mono font-bold text-red-600">You can only vote once !</p>
+             {% endif %}
+            <div class="m-3 mb-12 poll text-center flex justify-center">
+                <button type="submit" name="action" value="decrement_btn" class="vote-button focus:outline-none text-white bg-red-700 hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 mx-2 dark:focus:ring-red-900">L</button>
+                <div class=" h-10 w-2/4 dark:bg-gray-700">
+                    <div id="poll-result" class="h-10 bg-slate-100 text-s font-medium text-slate-950 text-center p-3 leading-none"> <div class="score">{{score}} + %</div></div>
+                </div>
+                <button type="submit" name="action" value="increment_btn" class="vote-button :outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 mx-2 dark:focus:ring-yellow-900">W</button>
+                </div>
+        </form>
+
+    </div>
+
+    <div class="flex-col space-y-3 m-5">
+        <div class=" comments bg-green-400 hover:border-4 border-2 rounded p-6 ">
+            <h3 class=" sm:text-2xl text-center font-mono font-semibold mb-2 underline">Discusssions on Ai</h3>
+            <ul class="list-disc font-mono">
+                <li class="hover:underline"><a href="https://www.reddit.com/r/artificial/" target="_blank">r/Artificial</a></li>
+                <li class="hover:underline">Coming Soon...</li>
+                <li class="hover:underline">Coming Soon...</li>
+            </ul>
+
+
+        </div>
+
+        <div class="bg-red-600 hover:border-4 border-2 rounded p-6 ">
+            <h3 class="sm:text-2xl text-center font-mono font-semibold mb-2 underline">New in Ai</h3>
+            <ul class="list-disc font-mono">
+                <li class="hover:underline"><a href="https://twitter.com/i/communities/1601841656147345410" target="_blank">Genrative Ai</a></li>
+                <li class="hover:underline">Coming Soon....</li>
+                <li class="hover:underline">Coming Soon...</li>
+            </ul>
+
+
+        </div>
+
+        <div class="bg-teal-400 hover:border-4 border-2 rounded p-6 ">
+            <h3 class="sm:text-2xl text-center font-mono font-semibold mb-2 underline">Ai Apps</h3>
+            <ul class="list-disc font-mono">
+                <li class="hover:underline"><a href="https://chat.openai.com/" target="_blank">Chat GPT</a></li>
+                <li class="hover:underline">Coming Soon...</li>
+                <li class="hover:underline">Coming Soon...</li>
+            </ul>
+
+
+
+        </div>
+    </div>
+
+    <script>
+            var score = {{ score }};
+    // Initialize the score at 50%
+
+        const scoreElement = document.querySelector('.score');
+        scoreElement.textContent = score + '%';
+        var widthPoll = document.getElementById('poll-result');
+        widthPoll.style.width = score + "%";
+    
+
+
+    </script>
+
+{%endblock%}
