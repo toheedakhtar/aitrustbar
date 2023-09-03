@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, reverse_lazy
 from django.contrib.auth import views as auth_views
 from users import views as users_views
 
@@ -25,7 +25,15 @@ urlpatterns = [
 
     # path('users/', include('users.urls')),
     path('signup/', users_views.signup , name='signup'),
-    path('login/', auth_views.LoginView.as_view(template_name="users/login.html") , name='login'),
+    path('login/', auth_views.LoginView.as_view(template_name='users/login.html') , name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name="users/logout.html") , name='logout'),
+    path('reset_password/', auth_views.PasswordResetView.as_view(template_name='users/resetPassword.html') , name='reset_password'),
+    path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name='users/resetPassword_sent.html'), name='reset_password_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(success_url = reverse_lazy('poll:password_reset_done')) , name='password_reset_confirm'),
+    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='users/resetPass-complete.html') , name='password_reset_complete'),
+
+
+
+
 
 ]

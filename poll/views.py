@@ -6,7 +6,7 @@ from poll.models import Score
 
 
 def index(request):
-    score_intsance = Score.objects.get(id=2)
+    score_intsance = Score.objects.get(id=1)
     score_value = score_intsance.score
     return render(request, 'poll/index.html', {'score' : score_value, })
 
@@ -15,7 +15,7 @@ def update_poll(request, id):
     if Score.objects.filter(voter=request.user).exists():
         return redirect('index')
     else:
-        score_intsance = Score.objects.get(id=2)
+        score_intsance = Score.objects.get(id=1)
         score_value = score_intsance.score
 
 
