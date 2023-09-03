@@ -18,6 +18,7 @@ from django.urls import path, include, reverse_lazy
 from django.contrib.auth import views as auth_views
 from users import views as users_views
 
+app_name = 'users'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,8 +29,8 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html') , name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name="users/logout.html") , name='logout'),
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name='users/resetPassword.html') , name='reset_password'),
-    path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name='users/resetPassword_sent.html'), name='reset_password_done'),
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(success_url = reverse_lazy('poll:password_reset_done')) , name='password_reset_confirm'),
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='users/resetPassword_sent.html'), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name= 'users/resetPass-form.html') , name='password_reset_confirm'),
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='users/resetPass-complete.html') , name='password_reset_complete'),
 
 

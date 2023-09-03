@@ -27,17 +27,19 @@
         {{ form|crispy }}
         <button type="submit" class="focus:outline-none text-white bg-cyan-700 hover:bg-cyan-500 focus:ring-4 focus:ring-cyan-300 font-medium rounded-lg text-sm px-3 py-2.5 mr-2 mb-3 mt-2 dark:focus:ring-lime-400">Submit</button>
     </form>
+    <br>
+    <h3><a href="{% url 'reset_password' %}" class="font-sans underline hover:text-cyan-500">Forgot your password?</a></h3>
+
     </div>
-    
+
+
+
     <hr class="mb-4 mt-8">
     <div class="flex flex-col items-center">
 
     <h3 class="font-mono text-center">Don't have an account? Join Now</h3>
     <a href="{% url 'signup' %}" style="text-decoration: none; color: white;">
     <button  class="button focus:outline-none text-white bg-lime-700 hover:bg-lime-500 focus:ring-4 focus:ring-lime-300 font-medium rounded-lg text-sm px-3 py-2.5 mr-2 mb-2 mt-2 dark:focus:ring-lime-400" value="signup">Sign Up</button></a>
-    <h3 class="font-mono text-center">Forgot your password?</h3>
-    <a href="{% url 'reset_password' %}"><button  class="focus:outline-none text-white bg-cyan-700 hover:bg-cyan-500 focus:ring-4 focus:ring-cyan-300 font-medium rounded-lg text-sm px-3 py-2.5 mr-2 mb-3 mt-2 dark:focus:ring-lime-400">Reset password</button></a>
-    
     </div>
     
 </div>
