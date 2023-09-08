@@ -32,3 +32,13 @@ class Score(models.Model):
             self.voter = user
             self.save() 
 
+
+class Article(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=140)
+    slug = models.CharField(max_length=130)
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title 

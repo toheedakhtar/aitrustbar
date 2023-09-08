@@ -23,43 +23,28 @@
                 </div>
         </form>
 
+        
+        
     </div>
-
-    <div class="flex-col space-y-3 m-5">
-        <div class=" comments bg-green-400 hover:border-4 border-2 rounded p-6 ">
-            <h3 class=" sm:text-2xl text-center font-mono font-semibold mb-2 underline">Discusssions on Ai</h3>
-            <ul class="list-disc font-mono">
-                <li class="hover:underline"><a href="https://www.reddit.com/r/artificial/" target="_blank">r/Artificial</a></li>
-                <li class="hover:underline">Coming Soon...</li>
-                <li class="hover:underline">Coming Soon...</li>
-            </ul>
-
-
+    
+    <div class="md:mx-28 lg:mx-[18%]  m-4 pt-3">
+        {% for post in all_posts %}
+        <div class="m-3 py-2 bg-neutral-950 border-2 hover:bg-neutral-900">
+        
+        <div class="py-2 px-2 flex">
+            <span> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6SGvshARHJ5GYSH_Kig8-cYNw5rO3nWn7mA&usqp=CAU" class="h-8 w-8 rounded-lg"> </span>
+            <span>
+            <h5 class="font-mono px-4 text-xs font-semibold">{{post.author}}</h5>
+            <h3 class="text-xl"><strong class="px-4">{{post.title}}</strong></h3>
+            </span>
         </div>
-
-        <div class="bg-red-600 hover:border-4 border-2 rounded p-6 ">
-            <h3 class="sm:text-2xl text-center font-mono font-semibold mb-2 underline">New in Ai</h3>
-            <ul class="list-disc font-mono">
-                <li class="hover:underline"><a href="https://twitter.com/i/communities/1601841656147345410" target="_blank">Genrative Ai</a></li>
-                <li class="hover:underline">Coming Soon....</li>
-                <li class="hover:underline">Coming Soon...</li>
-            </ul>
-
-
+        
+        <hr class="bg-neutral-900 h-2 border-1 ">
+        <p class="p-4 pt-3">{{post.body | truncatechars:160 }}</p>
         </div>
-
-        <div class="bg-teal-400 hover:border-4 border-2 rounded p-6 ">
-            <h3 class="sm:text-2xl text-center font-mono font-semibold mb-2 underline">Ai Apps</h3>
-            <ul class="list-disc font-mono">
-                <li class="hover:underline"><a href="https://chat.openai.com/" target="_blank">Chat GPT</a></li>
-                <li class="hover:underline">Coming Soon...</li>
-                <li class="hover:underline">Coming Soon...</li>
-            </ul>
-
-
-
-        </div>
+        {% endfor %}
     </div>
+        
 
     <script>
             var score = {{ score }};

@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.contrib.auth.decorators import login_required
-from poll.models import Score
+from poll.models import Score, Article
 # from .views update_view
 # Create your views here.
 
@@ -8,7 +8,8 @@ from poll.models import Score
 def index(request):
     score_intsance = Score.objects.get(id=1)
     score_value = score_intsance.score
-    return render(request, 'poll/index.html', {'score' : score_value, })
+    all_posts = Article.objects.all()
+    return render(request, 'poll/index.html', {'score' : score_value, 'all_posts': all_posts })
 
 @login_required
 def update_poll(request, id):
